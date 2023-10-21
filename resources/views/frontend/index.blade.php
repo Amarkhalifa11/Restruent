@@ -1,51 +1,50 @@
-@include('inc_frontend.header')
+@include('frontend.inc.header')
 
 <!-- ======= Hero Section ======= -->
-@include('inc_frontend.introduction')
+@include('frontend.introduction')
 
 
 <main id="main">
 
     <!-- ======= About Section ======= -->
-    @include('inc_frontend.about')
+    @include('frontend.about')
 
     <!-- ======= Whu Us Section ======= -->
-    @include('inc_frontend.why_us')
+    @include('frontend.why_us')
 
 
     <!-- ======= Menu Section ======= -->
-    @include('inc_frontend.menue')
-
+    @include('frontend.menue')
     <!-- ======= Specials Section ======= -->
-    @include('inc_frontend.specials')
+    @include('frontend.specials')
 
 
     <!-- ======= Events Section ======= -->
-    @include('inc_frontend.events')
+    @include('frontend.events')
 
 
     <!-- ======= Book A Table Section ======= -->
 
-    @include('inc_frontend.book_table')
+    @include('frontend.book_table')
 
     <!-- ======= Gallery Section ======= -->
-    @include('inc_frontend.gallary')
+    @include('frontend.gallary')
 
 
     <!-- ======= Chefs Section ======= -->
-    @include('inc_frontend.chefs')
+    @include('frontend.chefs')
 
 
     <!-- ======= Testimonials Section ======= -->
-    @include('inc_frontend.opinian')
+    @include('frontend.opinian')
 
 
     <!-- ======= Contact Section ======= -->
 
-    @include('inc_frontend.contact')
+    @include('frontend.contact')
 
 </main><!-- End #main -->
 
 <!-- ======= Footer ======= -->
 
-@include('inc_frontend.footer')
+@include('frontend.inc.footer')
