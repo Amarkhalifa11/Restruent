@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\Chefs;
 use Illuminate\Http\Request;
-use App\Models\Service;
-use App\Models\Category;
-use App\Models\Events;
 
-class ProductController extends Controller
+class ChefsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,23 +28,29 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // 
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Chefs $chefs)
+    {
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function category_menue($id)
+    public function edit(Chefs $chefs)
     {
-        $categories   = Category::all();
-        $products     = Product::where('category_id' , $id)->get();
-        return view('frontend.pages.menue' , compact('products' , 'categories' ));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Chefs $chefs)
     {
         //
     }
@@ -55,7 +58,7 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy(Chefs $chefs)
     {
         //
     }

@@ -6,7 +6,8 @@
         <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
       </div>
 
-      <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form">
+      <form action="{{ route('book_table.store') }}" method="post" role="form" >
+        @csrf
         <div class="row">
           <div class="col-lg-4 col-md-6 form-group">
             <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
@@ -34,16 +35,29 @@
           </div>
         </div>
         <div class="form-group mt-3">
-          <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
-          <div class="validate"></div>
+          <textarea class="form-control " name="message" rows="8" placeholder="Message"></textarea>
         </div>
-        <div class="mb-3">
-          <div class="loading">Loading</div>
-          <div class="error-message"></div>
-          <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
+
+        <div class="text-center">
+          <button class="text-center btn btn-success" type="submit">Send Message</button>
+
         </div>
-        <div class="text-center"><button type="submit">Send Message</button></div>
-      </form>
+      </form> 
+
 
     </div>
   </section><!-- End Book A Table Section -->
+
+
+
+
+  <div class="col-md-6">
+    <div class="form contact-form">
+
+
+
+
+
+
+    </div>
+  </div>

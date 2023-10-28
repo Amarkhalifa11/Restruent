@@ -11,7 +11,7 @@
             <a style="color: black; margin-right: 20px;  margin-left: 20px"  href="{{ route('home') }}">All</a>
             @foreach ($categories as $category)
                 
-           <a active style="color: black; margin-right: 20px;  margin-left: 20px"  href="{{ route('category', ['id'=>$category->id]) }}">{{$category->name}}</a>
+           <a active style="color: black; margin-right: 20px;  margin-left: 20px"  href="{{ route('category_menue', ['id'=>$category->id]) }}">{{$category->name}}</a>
             
             @endforeach
           </ul>
