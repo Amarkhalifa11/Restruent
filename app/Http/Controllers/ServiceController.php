@@ -3,63 +3,101 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+
+    public function all_service()
     {
-        //
+        $services = Service::all();
+        return view('backend.service.all_service' , compact('services'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
-        //
+        $users    = User::all();
+
+        return view('backend.service.add_service' , compact('users'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title'        => 'required|unique:services',
+            'description'  => 'required',
+            'user_id'      => 'required',
+        ] 
+        , 
+        [
+            'title.required'        => 'please write the title',
+            'title.unique'          => 'service tite must be unique',
+            'description.required'  => 'please write the description',
+            'user_id.required'      => 'please write the user_id',
+        ]);
+
+        $title              = $request->title;
+        $description        = $request->description;
+        $user_id            = $request->user_id;
+
+        $service = Service::create([
+            'title'         => $title,
+            'description'   => $description,
+            'user_id'       => $user_id,
+        ]);
+
+        return redirect()->route('backend.service.all_service')->with('success' , 'the service is added successfuly');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Service $service)
+
+    public function edit($id)
     {
-        //
+        $users    = User::all();
+
+        $service = Service::find($id);
+        return view('backend.service.edit_service' , compact('service' , 'users'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Service $service)
+    public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'title'        => 'required|unique:services',
+            'description'  => 'required',
+            'user_id'      => 'required',
+        ] 
+        , 
+        [
+            'title.required'        => 'please write the title',
+            'title.unique'          => 'service tite must be unique',
+            'description.required'  => 'please write the description',
+            'user_id.required'      => 'please write the user_id',
+        ]);
+
+        $title              = $request->title;
+        $description        = $request->description;
+        $user_id            = $request->user_id;
+        
+        $service = Service::find($id);
+
+        $service->update([
+            'title'         => $title,
+            'description'   => $description,
+            'user_id'       => $user_id,
+        ]);
+        
+
+        return redirect()->route('backend.service.all_service')->with('success' , 'the service is updated successfuly');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Service $service)
+    public function destroy($id)
     {
-        //
-    }
+        $service = Service::find($id);
+        $service->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Service $service)
-    {
-        //
+        return redirect()->route('backend.service.all_service')->with('success' , 'the service is deleted successfuly');
+
     }
 }

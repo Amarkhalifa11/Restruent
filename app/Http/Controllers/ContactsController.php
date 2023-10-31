@@ -8,14 +8,10 @@ use Illuminate\Http\Request;
 class ContactsController extends Controller
 {
 
-    public function index()
+    public function all_contacts()
     {
-        //
-    }
-
-    public function create()
-    {
-        //
+        $contacts = Contacts::all();
+        return view('backend.contact.all_contact' , compact('contacts'));
     }
 
     public function store(Request $request)
@@ -37,23 +33,12 @@ class ContactsController extends Controller
         return redirect()->back();
     }
 
-    public function show(Contacts $contacts)
-    {
-        //
-    }
 
-    public function edit(Contacts $contacts)
+    public function destroy($id)
     {
-        //
-    }
+        $contacts = Contacts::find($id);
+        $contacts->delete();
 
-    public function update(Request $request, Contacts $contacts)
-    {
-        //
-    }
-
-    public function destroy(Contacts $contacts)
-    {
-        //
+        return redirect()->route('backend.contact.all_contacts')->with('success' , 'the contact is deleted successfuly');
     }
 }

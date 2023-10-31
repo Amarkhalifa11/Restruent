@@ -7,59 +7,85 @@ use Illuminate\Http\Request;
 
 class GallaryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+
+    public function all_image()
     {
-        //
+        $gallarys = Gallary::all();
+        return view('backend.gallary.all_image' , compact('gallarys'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('backend.gallary.add_image');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'image'       => 'required',
+        ] 
+        , 
+        [ 
+            'image.required'      => 'please select the image',
+        ]);
+
+        $gallary_image        = $request->file('image');
+ 
+        $name_gen = hexdec(uniqid()); 
+        $img_ext = strtolower($gallary_image->getClientOriginalExtension()); 
+        $img_name = $name_gen . '.' . $img_ext; 
+         
+        $upload_location = 'frontend/assets/img/gallery/'; 
+        $image = $img_name; 
+        $gallary_image->move($upload_location,$img_name); 
+
+        $gallary = Gallary::create([
+            'image' => $image,
+        ]);
+
+        return redirect()->route('backend.gallary.all_image')->with('success' , 'the image is added successfuly');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Gallary $gallary)
+    public function edit($id)
     {
-        //
+        $gallary = Gallary::find($id);
+        return view('backend.gallary.edit_image' , compact('gallary'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Gallary $gallary)
+    public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'image'       => 'required',
+        ] 
+        , 
+        [ 
+            'image.required'      => 'please select the image',
+        ]);
+
+        $gallary_image        = $request->file('image');
+ 
+        $name_gen = hexdec(uniqid()); 
+        $img_ext = strtolower($gallary_image->getClientOriginalExtension()); 
+        $img_name = $name_gen . '.' . $img_ext; 
+         
+        $upload_location = 'frontend/assets/img/gallery/'; 
+        $image = $img_name; 
+        $gallary_image->move($upload_location,$img_name); 
+
+        $gallary = Gallary::find($id);
+        $gallary->update([
+            'image' => $image,
+        ]);
+
+        return redirect()->route('backend.gallary.all_image')->with('success' , 'the image is updated successfuly');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Gallary $gallary)
+    public function destroy($id)
     {
-        //
-    }
+        $gallary = Gallary::find($id);
+        $gallary->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Gallary $gallary)
-    {
-        //
+        return redirect()->route('backend.gallary.all_image')->with('success' , 'the image is deleted successfuly');
+
     }
 }

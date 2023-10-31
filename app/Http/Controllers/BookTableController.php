@@ -7,25 +7,14 @@ use Illuminate\Http\Request;
 
 class BookTableController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+
+    public function all_books()
     {
-        //
+        $tables = Book_table::all();
+        return view('backend.book_table.all_book' , compact('tables'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $name    = $request->name;
@@ -50,35 +39,11 @@ class BookTableController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Book_table $book_table)
+    public function destroy($id)
     {
-        //
-    }
+        $Books = Book_table::find($id);
+        $Books->delete();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Book_table $book_table)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Book_table $book_table)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Book_table $book_table)
-    {
-        //
+        return redirect()->route('backend.books.all_books')->with('success' , 'the book deleted succefuly');
     }
 }
