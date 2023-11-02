@@ -111,6 +111,14 @@ use App\Http\Controllers\ProductController;
  
 Route::get('/category_menue/{id}', [ProductController::class, 'category_menue'])->name('category_menue');
 
+
+Route::get('/backend/product/all_product', [ProductController::class, 'all_product'])->name('backend.product.all_product');
+Route::get('/backend/product/create', [ProductController::class, 'create'])->name('backend.product.create');
+Route::post('/backend/product/store', [ProductController::class, 'store'])->name('backend.product.store');
+Route::get('/backend/product/edit/{id}', [ProductController::class, 'edit'])->name('backend.product.edit');
+Route::post('/backend/product/update/{id}', [ProductController::class, 'update'])->name('backend.product.update');
+Route::get('/backend/product/destroy/{id}', [ProductController::class, 'destroy'])->name('backend.product.destroy');
+
 // ______________________________________________________________
 
 use App\Http\Controllers\BookTableController;
@@ -184,6 +192,20 @@ Route::get('/backend/gallary/destroy/{id}', [GallaryController::class, 'destroy'
 
 // ______________________________________________________________
 
+
+use App\Http\Controllers\EventsController;
+ 
+Route::get('/backend/events/all_events', [EventsController::class, 'all_events'])->name('backend.events.all_events');
+Route::get('/backend/events/create', [EventsController::class, 'create'])->name('backend.events.create');
+Route::post('/backend/events/store', [EventsController::class, 'store'])->name('backend.events.store');
+Route::get('/backend/events/edit/{id}', [EventsController::class, 'edit'])->name('backend.events.edit');
+Route::post('/backend/events/update/{id}', [EventsController::class, 'update'])->name('backend.events.update');
+Route::get('/backend/events/destroy/{id}', [EventsController::class, 'destroy'])->name('backend.events.destroy');
+
+// _____________________________________________________________ 
+
+
+// ______________________________________________________________
 
 
 Route::middleware([

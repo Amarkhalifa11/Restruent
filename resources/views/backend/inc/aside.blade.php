@@ -138,6 +138,46 @@
 
 
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#foerms-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Events</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="foerms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{{ route('backend.events.all_events') }}">
+              <i class="bi bi-circle"></i><span>All Events</span>
+            </a>
+          </li>
+          
+          <li>
+            <a href="{{ route('backend.events.create') }}">
+              <i class="bi bi-circle"></i><span>Add Events</span>
+            </a>
+
+        </ul>
+      </li><!-- End Forms Nav -->
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#compeonents-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Product</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="compeonents-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            
+          <li>
+            <a href="{{ route('backend.product.all_product') }}">
+              <i class="bi bi-circle"></i><span>ALL Product</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="{{ route('backend.product.create') }}">
+              <i class="bi bi-circle"></i><span>ADD Product</span>
+            </a>
+          </li>
+
+        </ul>
+      </li><!-- End Components Nav -->
 
 
     </ul>

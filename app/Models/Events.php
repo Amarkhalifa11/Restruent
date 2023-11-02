@@ -19,4 +19,9 @@ class Events extends Model
         'advan3',
         'advan4',
     ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }
